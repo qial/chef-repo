@@ -1,11 +1,11 @@
-headwire CHANGELOG
+dokuwiki CHANGELOG
 ==================
 
-This file is used to list changes made in each version of the headwire cookbook.
+This file is used to list changes made in each version of the dokuwiki cookbook.
 
 0.1.0
 -----
-- [your_name] - Initial release of headwire
+- [your_name] - Initial release of dokuwiki
 
 - - -
 Check the [Markdown Syntax Guide](http://daringfireball.net/projects/markdown/syntax) for help with Markdown.
