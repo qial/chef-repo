@@ -29,7 +29,7 @@ Vagrant::Config.run do |config|
   node ||= "vagrant-#{ENV['USER']}"
 
   config.vm.provision :chef_client do |chef|
-    chef.chef_server_url = "https://chef.headwire.com"
+    chef.chef_server_url = "https://192.168.42.16"
     chef.validation_key_path = "#{ENV['HOME']}/dev/chef-repo/.chef/chef-validator.pem"
     chef.validation_client_name = "chef-validator"
     chef.encrypted_data_bag_secret_key_path = "#{ENV['HOME']}/dev/chef-repo/.chef/encrypted_data_bag_secret"
