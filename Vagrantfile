@@ -44,5 +44,7 @@ Vagrant::Config.run do |config|
     chef.add_role("webserver")
 
     #chef.json.merge!({ :mysql_password => "foo" }) # You can do this to override any default attributes for this node.
+    chef.delete_node = true
+    chef.delete_client = true
   end
 end
