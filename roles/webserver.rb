@@ -3,10 +3,11 @@ description "Web server role"
 all_env = [
   "role[base]",
   "recipe[php]",
-  "recipe[php::module_mysql]",
+  #"recipe[php::module_mysql]",
   "recipe[apache2]",
   "recipe[apache2::mod_php5]",
   "recipe[apache2::mod_rewrite]",
+  "recipe[dokuwiki::webserver",
 ]
 
 run_list(all_env)
