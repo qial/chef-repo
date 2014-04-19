@@ -34,19 +34,20 @@ directory "#{app_config['config_dir']}" do
   recursive true
 end
 
-template "#{app_config['config_dir']}/local.config.php" do
-  source "local.config.php.erb"
-  mode 0440
-  owner "root"
-  group node['apache']['group']
-  variables(
-    'db_master' => {
-      'user' => app_config['db_user'],
-      'pass' => app_secrets[node.chef_environment]['db_pass'],
-      'dbname' => app_config['db_name'],
-      'host' => master_db_host,
-    }
-  )
-end
+#template "#{app_config['config_dir']}/local.config.php" do
+#  source "local.config.php.erb"
+#  mode 0440
+#  owner "root"
+#  group node['apache']['group']
+#  variables(
+#    'db_master' => {
+#      'user' => app_config['db_user'],
+#      'pass' => app_secrets[node.chef_environment]['db_pass'],
+#      'dbname' => app_config['db_name'],
+#      'host' => master_db_host,
+#    }
+#  )
+#end
 
-
+
+
