@@ -19,7 +19,7 @@ Vagrant::Config.run do |config|
 
   config.vm.network :hostonly, "10.0.0.23"
   config.vm.host_name = "doku"
-  config.vm.share_folder("v-root", "/home/vagrant/apps", ".", :nfs => true)
+  config.vm.share_folder("vagrant-root", "/home/vagrant/apps", ".", :nfs => true)
 
   # Your organization name for hosted Chef
   #orgname = "CHANGE_THIS_TO_YOUR_HOSTED_CHEF_ORGNAME"
@@ -32,7 +32,7 @@ Vagrant::Config.run do |config|
     chef.chef_server_url = "https://chef.headwire.com"
     chef.validation_key_path = "#{ENV['HOME']}/dev/chef-repo/.chef/chef-validator.pem"
     chef.validation_client_name = "chef-validator"
-    chef.encrypted_data_bag_secret_key_path = "#{ENV['HOME']}/.chef/encrypted_data_bag_secret"
+    chef.encrypted_data_bag_secret_key_path = "#{ENV['HOME']}/dev/chef-repo/.chef/encrypted_data_bag_secret"
     chef.node_name = "#{node}"
     chef.provisioning_path = "/etc/chef"
     chef.log_level = :debug
