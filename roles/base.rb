@@ -6,7 +6,8 @@ run_list(
   "recipe[apt]",
   "recipe[git]",
   "recipe[build-essential]",
-  "recipe[vim]"
+  "recipe[vim]",
+  "recipe[nano]"
 )
 override_attributes(
   :authorization => {
