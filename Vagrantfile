@@ -19,7 +19,7 @@ Vagrant::Config.run do |config|
 
   config.vm.network :hostonly, "10.0.0.23"
   config.vm.host_name = "doku"
-  config.vm.share_folder("vagrant-root", "/home/vagrant/apps", ".", :nfs => true)
+  config.vm.share_folder("vagrant-root", "/home/vagrant/apps/chef-repo", ".", :nfs => true)
 
   # Your organization name for hosted Chef
   #orgname = "CHANGE_THIS_TO_YOUR_HOSTED_CHEF_ORGNAME"
