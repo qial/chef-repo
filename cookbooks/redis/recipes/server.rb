@@ -1,10 +1,10 @@
 #
 # Cookbook Name::       redis
-# Description::         Base configuration for redis
-# Recipe::              default
-# Author::              Benjamin Black (<b@b3k.us>)
+# Description::         Redis server with runit service
+# Recipe::              server
+# Author::              Benjamin Black
 #
-# Copyright 2009, Benjamin Black
+# Copyright 2011, Benjamin Black
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -19,16 +19,24 @@
 # limitations under the License.
 #
 
+include_recipe 'runit'
 include_recipe 'metachef'
+include_recipe 'redis::default'
+
+daemon_user(:redis) do
+  home          node[:redis][:data_dir]
+end
 
 standard_dirs('redis.server') do
-  directories   :conf_dir
+  directories   :conf_dir, :log_dir, :data_dir
 end
 
-template "#{node[:redis][:conf_dir]}/redis.conf" do
-  source        "redis.conf.erb"
-  owner         "root"
-  group         "root"
-  mode          "0644"
-  variables     :redis => node[:redis], :redis_server => node[:redis][:server]
+kill_old_service('redis-server'){ only_if{ File.exists?("/etc/init.d/redis-server") } }
+
+runit_service "redis_server" do
+  run_state     node[:redis][:server][:run_state]
+  options       node[:redis]
 end
+
+announce(:redis, :server,
+  :port => node[:redis][:server][:port])

@@ -1,7 +1,7 @@
 #
 # Cookbook Name::       redis
-# Description::         Base configuration for redis
-# Recipe::              default
+# Description::         Client support for Redis database
+# Recipe::              client
 # Author::              Benjamin Black (<b@b3k.us>)
 #
 # Copyright 2009, Benjamin Black
@@ -19,16 +19,5 @@
 # limitations under the License.
 #
 
-include_recipe 'metachef'
-
-standard_dirs('redis.server') do
-  directories   :conf_dir
-end
-
-template "#{node[:redis][:conf_dir]}/redis.conf" do
-  source        "redis.conf.erb"
-  owner         "root"
-  group         "root"
-  mode          "0644"
-  variables     :redis => node[:redis], :redis_server => node[:redis][:server]
-end
+gem_package     'redis'
+gem_package     'redis-namespace'

@@ -1,10 +1,10 @@
 #
 # Cookbook Name::       redis
-# Description::         Base configuration for redis
-# Recipe::              default
-# Author::              Benjamin Black (<b@b3k.us>)
+# Description::         Install From Release
+# Recipe::              install_from_release
+# Author::              Benjamin Black
 #
-# Copyright 2009, Benjamin Black
+# Copyright 2009, Infochimps, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -19,16 +19,12 @@
 # limitations under the License.
 #
 
-include_recipe 'metachef'
+include_recipe "install_from"
 
-standard_dirs('redis.server') do
-  directories   :conf_dir
-end
-
-template "#{node[:redis][:conf_dir]}/redis.conf" do
-  source        "redis.conf.erb"
-  owner         "root"
-  group         "root"
-  mode          "0644"
-  variables     :redis => node[:redis], :redis_server => node[:redis][:server]
+install_from_release('redis') do
+  release_url  node[:redis][:release_url]
+  home_dir     node[:redis][:home_dir]
+  version      node[:redis][:version]
+  action       [ :install, :install_with_make ]
+  not_if{ File.exists?(File.join(node[:redis][:home_dir], 'redis-server')) }
 end

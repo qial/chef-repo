@@ -1,10 +1,10 @@
 #
 # Cookbook Name::       redis
-# Description::         Base configuration for redis
-# Recipe::              default
-# Author::              Benjamin Black (<b@b3k.us>)
+# Description::         Install From Ubuntu Package -- easy but lags in version
+# Recipe::              install_from_package
+# Author::              Benjamin Black
 #
-# Copyright 2009, Benjamin Black
+# Copyright 2011, Benjamin Black
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -19,16 +19,8 @@
 # limitations under the License.
 #
 
-include_recipe 'metachef'
-
-standard_dirs('redis.server') do
-  directories   :conf_dir
-end
-
-template "#{node[:redis][:conf_dir]}/redis.conf" do
-  source        "redis.conf.erb"
-  owner         "root"
-  group         "root"
-  mode          "0644"
-  variables     :redis => node[:redis], :redis_server => node[:redis][:server]
+unless node[:platform_version].to_f < 9.0
+  package "redis-server" do
+    action :install
+  end
 end
