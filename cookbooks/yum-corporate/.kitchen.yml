@@ -1,0 +1,17 @@
+---
+driver: vagrant
+
+provisioner:
+  name: chef_solo
+
+platforms:
+- name: centos-6.4
+
+suites:
+- name: default
+  run_list:
+  - recipe[yum-corporate::default]
+  attributes:
+    yum:
+      corporate:
+        baseurl: https://dl.fedoraproject.org/pub/epel/6/x86_64
