@@ -1,4 +1,4 @@
-include_recipe "git"
+include_recipe "headwire"
 include_recipe "runit"
 
 package "git-daemon-run"
