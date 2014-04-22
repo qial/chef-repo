@@ -11,3 +11,9 @@
 # Ignore Vagrant local files
 ###
 .vagrant/
+
+###
+# Ignore Test-Kitchen local files
+###
+.kitchen/
+
