@@ -17,3 +17,8 @@
 ###
 .kitchen/
 .kitchen.local.yml
+
+###
+# Ignore those weird .lock files
+###
+*.lock

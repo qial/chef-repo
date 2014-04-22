@@ -15,3 +15,8 @@ suites:
     run_list:
       - recipe[headwire::default]
     attributes:
+  - name: server
+    run_list:
+      - recipe[headwire::server]
+    attributes:
+
