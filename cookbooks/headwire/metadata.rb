@@ -6,12 +6,23 @@ description      "Installs/Configures headwire"
 
 version          "0.1.0"
 
+###
 # Dependencies
-#depends "runit", "~> 1.4.0"
-depends "redis"
-depends "logstash"
+###
+
+# Base unix dependencies
+#depends "users"
+#depends "sudo"
+depends "apt"
 depends "nano"
 depends "git"
+depends "vim"
+
+# server dependencies
+depends "redis"
+depends "logstash"
+depends "apache2"
+
 
 # Transitive dependencies we shouldn't have to put here but do
 #ifail

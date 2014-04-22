@@ -6,7 +6,7 @@ provisioner:
   name: chef_solo
 
 platforms:
-- name: ubuntu-14.04
+- name: ubuntu-12.04
   driver_config:
     customize:
       memory: 512
@@ -20,9 +20,9 @@ suites:
     run_list:
       - recipe[headwire::default]
     attributes:
-  - name: server
+  - name: teamserver
     run_list:
-      - recipe[headwire::server]
+      - recipe[headwire::teamserver]
     attributes:
     excludes:
       - centos-6.4
