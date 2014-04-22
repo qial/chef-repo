@@ -16,4 +16,4 @@
 # Ignore Test-Kitchen local files
 ###
 .kitchen/
-
+.kitchen.local.yml
