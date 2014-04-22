@@ -16,3 +16,7 @@ gem 'berkshelf'
 
 gem 'test-kitchen'
 gem 'kitchen-vagrant'
+gem 'pry'
+
+# Something requires this, not sure what
+#gem 'dep-selector-libgecode'

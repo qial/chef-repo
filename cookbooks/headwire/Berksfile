@@ -2,5 +2,6 @@ source "https://api.berkshelf.com"
 
 metadata
 
+#cookbook "runit", path: '/home/kw/dev/ironfan-pantry/cookbooks/runit'
 cookbook "logstash"
 cookbook "redis"
