@@ -41,7 +41,8 @@ Vagrant::Config.run do |config|
     chef.environment = "dev"
     chef.add_role("base")
     #chef.add_role("db_master")
-    chef.add_role("webserver")
+    #chef.add_role("webserver")
+    chef.add_role("logstash")
 
     #chef.json.merge!({ :mysql_password => "foo" }) # You can do this to override any default attributes for this node.
     chef.delete_node = true

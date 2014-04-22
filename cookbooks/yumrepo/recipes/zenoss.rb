@@ -1,9 +1,8 @@
 #
-# Cookbook Name:: yum
-# Provider:: repository
+# Cookbook Name:: yumrepo
+# Recipe:: zenoss 
 #
-# Author:: Sean OMeara <someara@getchef.com>
-# Copyright 2013, Chef
+# Copyright 2011, Eric G. Wolfe
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -18,19 +17,14 @@
 # limitations under the License.
 #
 
-use_inline_resources
-
-action :create  do
-  template new_resource.path do
-    source 'main.erb'
-    cookbook 'yum'
-    mode '0644'
-    variables(:config => new_resource)
-  end
+yum_key node['repo']['zenoss']['key'] do
+  url node['repo']['zenoss']['key_url']
+  action :add
 end
 
-action :delete do
-  file new_resource.path do
-    action :delete
-  end
+yum_repository "zenoss" do
+  description "ZenOss Stable repo"
+  key node['repo']['zenoss']['key']
+  url node['repo']['zenoss']['url']
+  action :add
 end

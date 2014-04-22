@@ -1,9 +1,9 @@
 #
-# Cookbook Name:: yum
-# Provider:: repository
+# Cookbook Name:: yumrepo
+# Attributes:: postgresql
 #
-# Author:: Sean OMeara <someara@getchef.com>
-# Copyright 2013, Chef
+# Copyright 2010, Tippr, Inc.
+# Copyright 2012, Bryan W. Berry (<bryan.berry@gmail.com>)
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -18,19 +18,6 @@
 # limitations under the License.
 #
 
-use_inline_resources
-
-action :create  do
-  template new_resource.path do
-    source 'main.erb'
-    cookbook 'yum'
-    mode '0644'
-    variables(:config => new_resource)
-  end
-end
-
-action :delete do
-  file new_resource.path do
-    action :delete
-  end
-end
+default['repo']['postgresql']['version'] = 9.0
+default['repo']['postgresql']['url'] = "http://yum.pgrpms.org/#{node['repo']['postgresql']['version']}/redhat/rhel-$releasever-$basearch"
+default['repo']['postgresql']['key'] = "RPM-GPG-KEY-PGDG"

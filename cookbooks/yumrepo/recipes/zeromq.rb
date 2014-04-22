@@ -1,9 +1,8 @@
 #
-# Cookbook Name:: yum
-# Provider:: repository
+# Cookbook Name:: yumrepo
+# Recipe:: zeromq
 #
-# Author:: Sean OMeara <someara@getchef.com>
-# Copyright 2013, Chef
+# Copyright 2012, Bryan W. Berry
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -18,19 +17,13 @@
 # limitations under the License.
 #
 
-use_inline_resources
-
-action :create  do
-  template new_resource.path do
-    source 'main.erb'
-    cookbook 'yum'
-    mode '0644'
-    variables(:config => new_resource)
-  end
+yum_key "RPM-GPG-KEY-ZEROMQ-CENTOS-6" do
+  url node['repo']['zeromq']['key_url']
 end
 
-action :delete do
-  file new_resource.path do
-    action :delete
-  end
+yum_repository "zeromq" do
+  description "Zeromq repository"
+  key node['repo']['zeromq']['key_url']
+  url node['repo']['zeromq']['url']
+  action :add
 end

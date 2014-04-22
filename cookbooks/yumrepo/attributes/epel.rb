@@ -1,9 +1,8 @@
 #
-# Cookbook Name:: yum
-# Provider:: repository
+# Cookbook Name:: yumrepo
+# Attributes:: epel 
 #
-# Author:: Sean OMeara <someara@getchef.com>
-# Copyright 2013, Chef
+# Copyright 2011, Eric G. Wolfe 
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -18,19 +17,11 @@
 # limitations under the License.
 #
 
-use_inline_resources
+default['repo']['epel']['url'] = "http://mirrors.fedoraproject.org/mirrorlist?repo=epel-#{node['platform_version'].to_i}&arch=$basearch"
 
-action :create  do
-  template new_resource.path do
-    source 'main.erb'
-    cookbook 'yum'
-    mode '0644'
-    variables(:config => new_resource)
-  end
+if node['platform_version'].to_i >= 6
+  set['repo']['epel']['key'] = "RPM-GPG-KEY-EPEL-6"
+else
+  set['repo']['epel']['key'] = "RPM-GPG-KEY-EPEL"
 end
-
-action :delete do
-  file new_resource.path do
-    action :delete
-  end
-end
+default['repo']['epel']['key_url'] = "http://download.fedoraproject.org/pub/epel/#{node['repo']['epel']['key']}"

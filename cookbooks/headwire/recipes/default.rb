@@ -7,4 +7,5 @@
 # All rights reserved - Do Not Redistribute
 #
 
-include_recipe "headwire::logserver"
+include_recipe "headwire::logstash"
+

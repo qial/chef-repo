@@ -1,9 +1,8 @@
 #
-# Cookbook Name:: yum
-# Provider:: repository
+# Cookbook Name:: yumrepo
+# Recipe:: default 
 #
-# Author:: Sean OMeara <someara@getchef.com>
-# Copyright 2013, Chef
+# Copyright 2010, Eric G. Wolfe
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -18,19 +17,7 @@
 # limitations under the License.
 #
 
-use_inline_resources
-
-action :create  do
-  template new_resource.path do
-    source 'main.erb'
-    cookbook 'yum'
-    mode '0644'
-    variables(:config => new_resource)
-  end
-end
-
-action :delete do
-  file new_resource.path do
-    action :delete
-  end
-end
+include_recipe "yum::yum"
+include_recipe "yum::epel"
+include_recipe "yumrepo::dell"
+include_recipe "yumrepo::vmware-tools"

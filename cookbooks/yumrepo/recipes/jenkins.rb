@@ -1,9 +1,8 @@
 #
-# Cookbook Name:: yum
-# Provider:: repository
+# Cookbook Name:: yumrepo
+# Recipe:: jenkins
 #
-# Author:: Sean OMeara <someara@getchef.com>
-# Copyright 2013, Chef
+# Copyright 2012, Eric G. Wolfe
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -18,19 +17,14 @@
 # limitations under the License.
 #
 
-use_inline_resources
-
-action :create  do
-  template new_resource.path do
-    source 'main.erb'
-    cookbook 'yum'
-    mode '0644'
-    variables(:config => new_resource)
-  end
+yum_key node['repo']['jenkins']['key'] do
+  url  node['repo']['jenkins']['key_url']
+  action :add
 end
 
-action :delete do
-  file new_resource.path do
-    action :delete
-  end
+yum_repository "jenkins" do
+  description "Jenkins"
+  key node['repo']['jenkins']['key']
+  url node['repo']['jenkins']['url']
+  action :add
 end
