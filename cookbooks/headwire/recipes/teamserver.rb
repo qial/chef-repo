@@ -21,7 +21,8 @@ include_recipe "apache2"
 # TODO
 
 # Set up GitLab
-include_recipe "gitlab"
+#getting a strange error about not finding a "ruby" recipe in mysql
+#include_recipe "gitlab"
 
 #echo "OHAAAAIIIIIII"
 
