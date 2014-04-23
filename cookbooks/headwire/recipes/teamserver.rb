@@ -20,5 +20,7 @@ include_recipe "apache2"
 # Set up Nexus
 # TODO
 
-# Set up GitLab/SVN
+# Set up GitLab
+# TODO
+
 
