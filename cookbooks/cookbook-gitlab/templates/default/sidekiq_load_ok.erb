@@ -1,0 +1,31 @@
+#!/bin/bash
+
+# GitLab Sidekiq load check for Monit If Sidekiq reports that all its workers
+# are busy for a prolonged period of time, we may have an situation where the
+# queue is stuck. This can be resolved by letting Monit restart Sidekiq.
+#
+# This script exits immediately with status 0 if Sidekiq still has workers
+# available.  If all workers are busy, we repeatedly check again after 1
+# second. As soon as Sidekiq has workers available again, we exit with status
+# 0. If Sidekiq keeps reporting all its workers are busy after $timeout
+# seconds, we exit with status 1 to signal to Monit that a restart is needed.
+
+timeout=<%= @timeout %>
+
+function exit_if_load_ok
+{
+  if <%= @gitlab_root %>/script/background_jobs load_ok ; then
+    exit 0
+  fi
+}
+
+counter=0
+while [[ $counter -lt $timeout ]]; do
+  counter=$[counter + 1]
+  exit_if_load_ok
+  sleep 1
+done
+
+# At this point, Sidekiq has had 25/25 workers busy for $timeout seconds;
+# this is not OK.
+exit 1
