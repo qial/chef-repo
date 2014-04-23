@@ -21,6 +21,7 @@ include_recipe "apache2"
 # TODO
 
 # Set up GitLab
-# TODO
+include_recipe "gitlab"
 
-
+
+
