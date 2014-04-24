@@ -5,3 +5,5 @@ metadata
 #cookbook "runit", path: '/home/kw/dev/ironfan-pantry/cookbooks/runit'
 cookbook "logstash"
 cookbook "redis"
+cookbook "tomcat"
+cookbook "gitlab", path: '/home/kw/dev/chef-repo/cookbooks/cookbook-gitlab'

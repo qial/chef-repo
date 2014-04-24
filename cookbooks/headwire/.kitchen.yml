@@ -9,7 +9,7 @@ platforms:
 - name: ubuntu-12.04
   driver_config:
     customize:
-      memory: 512
+      memory: 1024
 
 #  - name: ubuntu-12.04
 #  - name: ubuntu-10.04
