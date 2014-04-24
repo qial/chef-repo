@@ -14,6 +14,9 @@ include_recipe "apache2"
 # Set up LDAP?
 # TODO?
 
+# Set up Tomcat
+include_recipe "tomcat"
+
 # Set up Jenkins
 # TODO
 

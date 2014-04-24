@@ -23,6 +23,7 @@ depends "redis"
 depends "logstash"
 depends "apache2"
 depends "gitlab"
+depends "tomcat"
 
 
 # Transitive dependencies we shouldn't have to put here but do
