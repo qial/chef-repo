@@ -10,6 +10,9 @@ platforms:
   driver_config:
     customize:
       memory: 1024
+    network:
+    - ["forwarded_port", {guest: 8080, host: 8080}]
+    - ["forwarded_port", {guest: 80, host: 8888}]
 
 #  - name: ubuntu-12.04
 #  - name: ubuntu-10.04

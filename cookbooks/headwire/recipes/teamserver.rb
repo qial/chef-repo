@@ -9,7 +9,7 @@ include_recipe "vim"
 include_recipe "nano"
 
 # Set up Apache2
-include_recipe "apache2"
+#include_recipe "apache2"
 
 # Set up LDAP?
 # TODO?
